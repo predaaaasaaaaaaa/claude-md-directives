@@ -4,9 +4,9 @@ Production-grade agent directives for Claude Code. Reverse-engineered from the s
 
 ## What This Is
 
-Claude Code has bottlenecks that cause predictable failures: context compaction destroys working memory mid-refactor, file reads silently truncate at 2,000 lines, tool results get cut to 2,000-byte previews, and the default system prompt biases toward minimal output over correct output.
+Claude Code has structural bottlenecks that cause predictable failures: context compaction destroys working memory mid-refactor, file reads silently truncate at 2,000 lines, tool results get cut to 2,000-byte previews, the default system prompt biases toward minimal output over correct output, and the agent has no built-in verification loop between editing code and reporting success.
 
-This CLAUDE.md overrides all of it.
+This CLAUDE.md overrides all of it. It also adds operational patterns that Anthropic's engineers use internally: spec-based development, sub-agent execution models, file system as state, prompt cache management, and self-improving error prevention.
 
 Full technical breakdown: [https://www.linkedin.com/posts/samy-metref-77744133b_aileaks-breakingnews-aiagents-share-7444859568989405184-ea0R?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFVQ7wsBh8pyqoP08LZIkk4rZeGzc_HUjCk]
 
