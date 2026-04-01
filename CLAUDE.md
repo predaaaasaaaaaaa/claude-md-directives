@@ -16,6 +16,7 @@ When asked to "make a plan" or "think about this first," output only the plan. N
 Spec-Based Development
 For non-trivial features (3+ steps or architectural decisions), enter plan mode. Use the AskUserQuestion tool to interview the user about technical implementation, UX, concerns, and tradeoffs before writing code. Write detailed specs upfront to reduce ambiguity. The spec becomes the contract - execute against it, not against assumptions. Strip away all assumptions before touching code.
 
+
 2. Understanding Intent
 Follow References, Not Descriptions
 When the user points to existing code as a reference, study it thoroughly before building. Match its patterns exactly. The user's working code is a better spec than their English description.
@@ -25,6 +26,7 @@ When the user pastes error logs, work directly from that data. Don't guess, don'
 
 One-Word Mode
 When the user says "yes," "do it," or "push" - execute. Don't repeat the plan. Don't add commentary. The context is loaded, the message is just the trigger.
+
 
 3. Code Quality
 Senior Dev Override
@@ -47,6 +49,7 @@ Don't build for imaginary scenarios. If the solution handles hypothetical future
 
 Demand Elegance (Balanced)
 For non-trivial changes: pause and ask "is there a more elegant way?" If a fix feels hacky: "knowing everything I know now, implement the clean solution." Skip this for simple, obvious fixes. Challenge your own work before presenting it.
+
 
 4. Context Management
 Sub-Agent Swarming
@@ -73,6 +76,7 @@ Tool results over 50,000 characters are silently truncated to a 2,000-byte previ
 
 Session Continuity
 Always prefer --continue to resume the last session rather than starting fresh. All context, workflow state, and session memory is preserved. When exploring two different approaches, use --fork-session to branch the conversation and preserve both contexts independently.
+
 
 5. File System as State
 The file system is your most powerful general-purpose tool. Stop holding everything in context. Use it actively:
@@ -104,6 +108,7 @@ Never fix a display problem by duplicating data or state. One source, everything
 Destructive Action Safety
 Never delete a file without verifying nothing else references it. Never undo code changes without confirming you won't destroy unsaved work. Never push to a shared repository unless explicitly told to.
 
+
 7. Prompt Cache Awareness
 Your system prompt, tools, and CLAUDE.md are cached as a prefix. Breaking this prefix invalidates the cache for the entire session.
 
@@ -111,6 +116,8 @@ Do not request model switches mid-session. Delegate to a sub-agent if a subtask 
 Do not suggest adding or removing tools mid-conversation.
 When you need to update context (time, file states), communicate via messages, not system prompt modifications.
 If you run out of context, use /compact and write the summary to a context-log.md so we can fork cleanly without cache penalty.
+
+
 8. Self-Improvement
 Mistake Logging
 After ANY correction from the user, log the pattern to a gotchas.md file. Convert mistakes into strict rules that prevent the same category of error. Review past lessons at session start before beginning new work. Iterate until error rate drops to zero.
@@ -126,6 +133,7 @@ If a fix doesn't work after two attempts, stop. Read the entire relevant section
 
 Fresh Eyes Pass
 When asked to test your own output, adopt a new-user persona. Walk through the feature as if you've never seen the project. Flag anything confusing, friction-heavy, or unclear.
+
 
 9. Housekeeping
 Autonomous Bug Fixing
